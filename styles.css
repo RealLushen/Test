@@ -87,8 +87,18 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start; /* Left align containers */
     padding: 20px;
+}
+
+/* Container wrapper to help with positioning */
+.container-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 auto;
 }
 
 /* Main Menu Styles */
@@ -291,7 +301,6 @@ body {
     opacity: 0.7;
 }
 
-/* Game Screen Styles - Updated grid layout without combat log */
 .game-container {
     display: grid;
     grid-template-columns: 4fr 1fr;
@@ -303,7 +312,6 @@ body {
         "player-actions side-panel";
     gap: 15px;
     width: 100%;
-    max-width: 1400px;
     background-color: var(--medium-bg);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -768,6 +776,7 @@ body {
     }
     
     .combat-log-container {
+        width: 100%; /* Full width on smaller screens */
         margin-top: 15px;
     }
 }

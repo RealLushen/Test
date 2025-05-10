@@ -7,101 +7,103 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-container">
-        <!-- Top UI Stats - Horizontal layout -->
-        <div class="top-ui">
-            <div class="spacer"></div>
-            <div class="game-progress">
-                <div class="progress-stats-row">
-                    <div class="progress-stat">Round: <span id="rounds-survived">1</span></div>
-                    <div class="progress-stat">Level: <span id="player-level">1</span></div>
-                    <div class="progress-stat">XP: <span id="player-xp">0</span>/<span id="xp-needed">100</span></div>
+    <div class="container-wrapper">
+        <div class="game-container">
+            <!-- Top UI Stats - Horizontal layout -->
+            <div class="top-ui">
+                <div class="spacer"></div>
+                <div class="game-progress">
+                    <div class="progress-stats-row">
+                        <div class="progress-stat">Round: <span id="rounds-survived">1</span></div>
+                        <div class="progress-stat">Level: <span id="player-level">1</span></div>
+                        <div class="progress-stat">XP: <span id="player-xp">0</span>/<span id="xp-needed">100</span></div>
+                    </div>
+                    <div class="xp-bar-container">
+                        <div id="xp-bar" class="xp-bar"></div>
+                    </div>
                 </div>
-                <div class="xp-bar-container">
-                    <div id="xp-bar" class="xp-bar"></div>
-                </div>
+                <div class="spacer"></div>
             </div>
-            <div class="spacer"></div>
-        </div>
 
-        <!-- Battle Arena - With explicit divider -->
-        <div class="battle-arena">
-            <div class="player-side">
-                <div id="player-avatar" class="avatar"></div>
-                <div id="player-effects" class="effects-container"></div>
-                <!-- Player stats below avatar -->
-                <div class="character-stats player-stats-battle">
-                    <div class="stats-name" id="battle-player-name">Player</div>
-                    <div class="stat-group">
-                        <div class="stat-label">HP:</div>
-                        <div class="stat-values"><span id="battle-player-hp">100</span>/<span id="battle-player-max-hp">100</span></div>
-                        <div class="hp-bar-container">
-                            <div id="battle-player-hp-bar" class="hp-bar"></div>
+            <!-- Battle Arena - With explicit divider -->
+            <div class="battle-arena">
+                <div class="player-side">
+                    <div id="player-avatar" class="avatar"></div>
+                    <div id="player-effects" class="effects-container"></div>
+                    <!-- Player stats below avatar -->
+                    <div class="character-stats player-stats-battle">
+                        <div class="stats-name" id="battle-player-name">Player</div>
+                        <div class="stat-group">
+                            <div class="stat-label">HP:</div>
+                            <div class="stat-values"><span id="battle-player-hp">100</span>/<span id="battle-player-max-hp">100</span></div>
+                            <div class="hp-bar-container">
+                                <div id="battle-player-hp-bar" class="hp-bar"></div>
+                            </div>
+                        </div>
+                        <div class="stat-group">
+                            <div class="stat-label">Mana:</div>
+                            <div class="stat-values"><span id="battle-player-mana">30</span>/<span id="battle-player-max-mana">30</span></div>
+                            <div class="mana-bar-container">
+                                <div id="battle-player-mana-bar" class="mana-bar"></div>
+                            </div>
+                        </div>
+                        <div class="stat-group">
+                            <div class="stat-label">Speed:</div>
+                            <div class="stat-values"><span id="battle-player-speed">5</span></div>
                         </div>
                     </div>
-                    <div class="stat-group">
-                        <div class="stat-label">Mana:</div>
-                        <div class="stat-values"><span id="battle-player-mana">30</span>/<span id="battle-player-max-mana">30</span></div>
-                        <div class="mana-bar-container">
-                            <div id="battle-player-mana-bar" class="mana-bar"></div>
+                </div>
+                <div class="battle-arena-divider"></div>
+                <div class="enemy-side">
+                    <div id="enemy-avatar" class="avatar"></div>
+                    <div id="enemy-effects" class="effects-container"></div>
+                    <!-- Enemy stats below avatar -->
+                    <div class="character-stats enemy-stats-battle">
+                        <div class="stats-name" id="battle-enemy-name">Enemy</div>
+                        <div class="enemy-level">Level <span id="battle-enemy-level">1</span></div>
+                        <div class="stat-group">
+                            <div class="stat-label">HP:</div>
+                            <div class="stat-values"><span id="battle-enemy-hp">100</span>/<span id="battle-enemy-max-hp">100</span></div>
+                            <div class="hp-bar-container">
+                                <div id="battle-enemy-hp-bar" class="hp-bar"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="stat-group">
-                        <div class="stat-label">Speed:</div>
-                        <div class="stat-values"><span id="battle-player-speed">5</span></div>
+                        <!-- Enemy damage indicator -->
+                        <div class="enemy-damage-indicator">
+                            <div class="stat-label">Damage:</div>
+                            <div class="damage-value"><span id="enemy-min-damage">5</span>-<span id="enemy-max-damage">8</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="battle-arena-divider"></div>
-            <div class="enemy-side">
-                <div id="enemy-avatar" class="avatar"></div>
-                <div id="enemy-effects" class="effects-container"></div>
-                <!-- Enemy stats below avatar -->
-                <div class="character-stats enemy-stats-battle">
-                    <div class="stats-name" id="battle-enemy-name">Enemy</div>
-                    <div class="enemy-level">Level <span id="battle-enemy-level">1</span></div>
-                    <div class="stat-group">
-                        <div class="stat-label">HP:</div>
-                        <div class="stat-values"><span id="battle-enemy-hp">100</span>/<span id="battle-enemy-max-hp">100</span></div>
-                        <div class="hp-bar-container">
-                            <div id="battle-enemy-hp-bar" class="hp-bar"></div>
-                        </div>
-                    </div>
-                    <!-- Enemy damage indicator -->
-                    <div class="enemy-damage-indicator">
-                        <div class="stat-label">Damage:</div>
-                        <div class="damage-value"><span id="enemy-min-damage">5</span>-<span id="enemy-max-damage">8</span></div>
-                    </div>
+
+            <!-- Player Actions -->
+            <div class="player-actions">
+                <div class="hand-container" id="hand-container">
+                    <!-- Cards will be dynamically added here -->
+                </div>
+                <div class="action-buttons">
+                    <button id="defend-button" class="action-button">Defend (10 Mana)</button>
+                    <button id="replenish-button" class="action-button">Replenish Mana</button>
+                    <button id="end-turn-button" class="action-button">End Turn</button>
+                </div>
+            </div>
+
+            <!-- Mutations Panel -->
+            <div class="side-panel">
+                <h3>Active Mutations</h3>
+                <div id="mutations-list" class="mutations-list">
+                    <!-- Mutations will be listed here -->
+                    <div class="no-mutations">No mutations yet</div>
                 </div>
             </div>
         </div>
 
-        <!-- Player Actions -->
-        <div class="player-actions">
-            <div class="hand-container" id="hand-container">
-                <!-- Cards will be dynamically added here -->
-            </div>
-            <div class="action-buttons">
-                <button id="defend-button" class="action-button">Defend (10 Mana)</button>
-                <button id="replenish-button" class="action-button">Replenish Mana</button>
-                <button id="end-turn-button" class="action-button">End Turn</button>
-            </div>
+        <!-- NEW: Combat Log Container (aligned with battle arena) -->
+        <div class="combat-log-container">
+            <h3>Combat Log</h3>
+            <div id="battle-log" class="battle-log"></div>
         </div>
-
-        <!-- Mutations Panel -->
-        <div class="side-panel">
-            <h3>Active Mutations</h3>
-            <div id="mutations-list" class="mutations-list">
-                <!-- Mutations will be listed here -->
-                <div class="no-mutations">No mutations yet</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NEW: Combat Log Container (outside the main game container) -->
-    <div class="combat-log-container">
-        <h3>Combat Log</h3>
-        <div id="battle-log" class="battle-log"></div>
     </div>
 
     <!-- Overlay Screens -->
