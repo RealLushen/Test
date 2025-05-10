@@ -654,16 +654,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // UI Functions
   function updateUI() {
     // Update top header stats - only game progress remains
-    playerNicknameElem.textContent = gameState.player.nickname;
-    playerClassElem.textContent = gameState.player.className;
     playerLevelElem.textContent = gameState.player.level;
     playerXpElem.textContent = gameState.player.xp;
     xpNeededElem.textContent = gameState.player.xpNeeded;
     xpBarElem.style.width = `${(gameState.player.xp / gameState.player.xpNeeded) * 100}%`;
-    
-    // Update enemy name and level in top UI
-    enemyNameElem.textContent = gameState.enemy.name;
-    enemyLevelElem.textContent = `Level ${gameState.enemy.level}`;
+    roundsSurvivedElem.textContent = gameState.round;
     
     // Update battle UI stats
     // Player stats below avatar
@@ -678,6 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Enemy stats below avatar
     document.getElementById('battle-enemy-name').textContent = gameState.enemy.name;
+    document.getElementById('battle-enemy-level').textContent = gameState.enemy.level;
     document.getElementById('battle-enemy-hp').textContent = gameState.enemy.currentHP;
     document.getElementById('battle-enemy-max-hp').textContent = gameState.enemy.maxHP;
     document.getElementById('battle-enemy-hp-bar').style.width = `${(gameState.enemy.currentHP / gameState.enemy.maxHP) * 100}%`;

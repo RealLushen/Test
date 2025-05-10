@@ -8,12 +8,9 @@
 </head>
 <body>
     <div class="game-container">
-        <!-- Top UI Stats - Simplified to only show progress stats -->
+        <!-- Top UI Stats - Only rounds, level, and XP -->
         <div class="top-ui">
-            <div class="player-identity">
-                <span id="player-nickname"></span>
-                <span id="player-class"></span>
-            </div>
+            <div class="spacer"></div>
             <div class="game-progress">
                 <div class="progress-stat">Round: <span id="rounds-survived">1</span></div>
                 <div class="progress-stat">Level: <span id="player-level">1</span></div>
@@ -22,10 +19,7 @@
                     <div id="xp-bar" class="xp-bar"></div>
                 </div>
             </div>
-            <div class="enemy-identity">
-                <span id="enemy-name">Enemy</span>
-                <span id="enemy-level">Level 1</span>
-            </div>
+            <div class="spacer"></div>
         </div>
 
         <!-- Battle Arena - Without crossed swords -->
@@ -62,6 +56,7 @@
                 <!-- Enemy stats below avatar -->
                 <div class="character-stats enemy-stats-battle">
                     <div class="stats-name" id="battle-enemy-name">Enemy</div>
+                    <div class="enemy-level">Level <span id="battle-enemy-level">1</span></div>
                     <div class="stat-group">
                         <div class="stat-label">HP:</div>
                         <div class="stat-values"><span id="battle-enemy-hp">100</span>/<span id="battle-enemy-max-hp">100</span></div>
