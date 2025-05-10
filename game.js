@@ -3,13 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameState = {
     player: null,
     enemy: null,
-    enemiesDefeated: 0, // Track enemies defeated separately
-    round: 1, // Current round (enemy number)
+    enemiesDefeated: 0, // Count of defeated enemies for Round counter
     isPlayerTurn: true,
     battleLog: [],
     activeMutations: [],
     handCards: [],
-    turn: 1 // Counter for turns within a round
+    turn: 1 // Turn counter within a battle
   };
 
   // DOM Elements - Remove elements that no longer exist in the HTML
@@ -222,9 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add welcome message
     logBattle(`Welcome to Arkanium, ${gameState.player.nickname} the ${gameState.player.className}!`);
-    logBattle(`=== Round ${gameState.round} ===`);
     logBattle(`You encounter a ${gameState.enemy.name}!`);
-    logBattle(`----- Turn ${gameState.turn}: Your Move -----`);
   }
   
   // Spawn a new enemy based on player level
@@ -439,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set to enemy turn
     gameState.isPlayerTurn = false;
-    logBattle(`----- Turn ${gameState.turn}: Enemy's Move -----`);
+    logBattle("----- Enemy's Turn -----");
     
     // Enemy acts after a short delay
     setTimeout(() => {
@@ -463,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function startPlayerTurn() {
     // Set to player turn
     gameState.isPlayerTurn = true;
-    logBattle(`----- Turn ${gameState.turn}: Your Move -----`);
+    logBattle("----- Your Turn -----");
     
     // Regenerate mana
     let manaRegen = 3; // Base mana regen
@@ -539,15 +536,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function roundWon() {
-    // Increment enemies defeated counter
+    // Increment enemies defeated counter and update UI
     gameState.enemiesDefeated++;
-    // Update the UI to show enemies defeated
     roundsSurvivedElem.textContent = gameState.enemiesDefeated;
     
-    // Increment round for the next enemy
-    gameState.round++;
-    
-    // Reset turn counter for new round
+    // Reset turn counter for new battle
     gameState.turn = 1;
     
     // Award XP
@@ -555,8 +548,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     logBattle(`You defeated the ${gameState.enemy.name}!`);
     logBattle(`Gained ${gameState.enemy.xpReward} XP!`);
-    logBattle(`Total enemies defeated: ${gameState.enemiesDefeated}`);
-    logBattle(`=== Round ${gameState.round} ===`);
     
     // Show mutation selection
     showMutationSelection();
@@ -610,12 +601,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Spawn new enemy
     spawnEnemy();
     
-    // Reset turn counter for new round
+    // Reset turn counter for new battle
     gameState.turn = 1;
-    
-    // Start new round
-    logBattle(`You encounter a ${gameState.enemy.name}!`);
-    logBattle(`----- Turn ${gameState.turn}: Your Move -----`);
     
     // Start player turn
     startPlayerTurn();
