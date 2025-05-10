@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkanium - Battle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Top UI Stats -->
+        <div class="top-ui">
+            <div class="player-stats">
+                <div class="player-identity">
+                    <span id="player-nickname"></span>
+                    <span id="player-class"></span>
+                </div>
+                <div class="stat-group">
+                    <div class="stat">
+                        <span class="stat-label">HP:</span>
+                        <span id="player-hp-value">100</span>/<span id="player-hp-max">100</span>
+                    </div>
+                    <div class="hp-bar-container">
+                        <div id="player-hp-bar" class="hp-bar"></div>
+                    </div>
+                </div>
+                <div class="stat-group">
+                    <div class="stat">
+                        <span class="stat-label">Mana:</span>
+                        <span id="player-mana-value">30</span>/<span id="player-mana-max">30</span>
+                    </div>
+                    <div class="mana-bar-container">
+                        <div id="player-mana-bar" class="mana-bar"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Speed:</span>
+                    <span id="player-speed">5</span>
+                </div>
+            </div>
+            <div class="game-progress">
+                <div class="progress-stat">Round: <span id="rounds-survived">1</span></div>
+                <div class="progress-stat">Level: <span id="player-level">1</span></div>
+                <div class="progress-stat">XP: <span id="player-xp">0</span>/<span id="xp-needed">100</span></div>
+                <div class="xp-bar-container">
+                    <div id="xp-bar" class="xp-bar"></div>
+                </div>
+            </div>
+            <div class="enemy-stats">
+                <div class="enemy-identity">
+                    <span id="enemy-name">Enemy</span>
+                    <span id="enemy-level">Level 1</span>
+                </div>
+                <div class="stat-group">
+                    <div class="stat">
+                        <span class="stat-label">HP:</span>
+                        <span id="enemy-hp-value">100</span>/<span id="enemy-hp-max">100</span>
+                    </div>
+                    <div class="hp-bar-container">
+                        <div id="enemy-hp-bar" class="hp-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Arena -->
+        <div class="battle-arena">
+            <div class="player-side">
+                <div id="player-avatar" class="avatar"></div>
+                <div id="player-effects" class="effects-container"></div>
+            </div>
+            <div class="battle-log-container">
+                <div id="battle-log" class="battle-log"></div>
+            </div>
+            <div class="enemy-side">
+                <div id="enemy-avatar" class="avatar"></div>
+                <div id="enemy-effects" class="effects-container"></div>
+            </div>
+        </div>
+
+        <!-- Player Actions -->
+        <div class="player-actions">
+            <div class="hand-container" id="hand-container">
+                <!-- Cards will be dynamically added here -->
+            </div>
+            <div class="action-buttons">
+                <button id="defend-button" class="action-button">Defend (10 Mana)</button>
+                <button id="replenish-button" class="action-button">Replenish Mana</button>
+                <button id="end-turn-button" class="action-button">End Turn</button>
+            </div>
+        </div>
+
+        <!-- Mutations Panel -->
+        <div class="side-panel">
+            <h3>Active Mutations</h3>
+            <div id="mutations-list" class="mutations-list">
+                <!-- Mutations will be listed here -->
+                <div class="no-mutations">No mutations yet</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay Screens -->
+    <div id="mutation-selection" class="overlay hidden">
+        <div class="overlay-content">
+            <h2>Choose a Mutation</h2>
+            <div class="mutations-container" id="mutation-choices">
+                <!-- Mutation choices will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="game-over" class="overlay hidden">
+        <div class="overlay-content">
+            <h2>Game Over</h2>
+            <div class="final-stats">
+                <p>Nickname: <span id="final-nickname"></span></p>
+                <p>Class: <span id="final-class"></span></p>
+                <p>Rounds Survived: <span id="final-rounds"></span></p>
+                <p>Level: <span id="final-level"></span></p>
+            </div>
+            <div class="mutation-history">
+                <h3>Mutation History</h3>
+                <div id="final-mutations" class="final-mutations-list">
+                    <!-- Final mutations list will be inserted here -->
+                </div>
+            </div>
+            <button id="return-to-menu">Return to Main Menu</button>
+        </div>
+    </div>
+
+    <!-- Firebase Setup -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <script src="firebase-config.js"></script>
+    <script src="game-config.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
