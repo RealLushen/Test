@@ -63,16 +63,50 @@
             </div>
         </div>
 
-        <!-- Battle Arena - Revised to ensure horizontal layout -->
+        <!-- Battle Arena - Revised with stats under avatars -->
         <div class="battle-arena">
             <div class="player-side">
                 <div id="player-avatar" class="avatar"></div>
                 <div id="player-effects" class="effects-container"></div>
+                <!-- Player stats moved below avatar -->
+                <div class="character-stats player-stats-battle">
+                    <div class="stats-name" id="battle-player-name">Player</div>
+                    <div class="stat-group">
+                        <div class="stat-label">HP:</div>
+                        <div class="stat-values"><span id="battle-player-hp">100</span>/<span id="battle-player-max-hp">100</span></div>
+                        <div class="hp-bar-container">
+                            <div id="battle-player-hp-bar" class="hp-bar"></div>
+                        </div>
+                    </div>
+                    <div class="stat-group">
+                        <div class="stat-label">Mana:</div>
+                        <div class="stat-values"><span id="battle-player-mana">30</span>/<span id="battle-player-max-mana">30</span></div>
+                        <div class="mana-bar-container">
+                            <div id="battle-player-mana-bar" class="mana-bar"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="vs-indicator">⚔️</div>
             <div class="enemy-side">
                 <div id="enemy-avatar" class="avatar"></div>
                 <div id="enemy-effects" class="effects-container"></div>
+                <!-- Enemy stats moved below avatar -->
+                <div class="character-stats enemy-stats-battle">
+                    <div class="stats-name" id="battle-enemy-name">Enemy</div>
+                    <div class="stat-group">
+                        <div class="stat-label">HP:</div>
+                        <div class="stat-values"><span id="battle-enemy-hp">100</span>/<span id="battle-enemy-max-hp">100</span></div>
+                        <div class="hp-bar-container">
+                            <div id="battle-enemy-hp-bar" class="hp-bar"></div>
+                        </div>
+                    </div>
+                    <!-- Enemy damage indicator -->
+                    <div class="enemy-damage-indicator">
+                        <div class="stat-label">Damage:</div>
+                        <div class="damage-value"><span id="enemy-min-damage">5</span>-<span id="enemy-max-damage">8</span></div>
+                    </div>
+                </div>
             </div>
         </div>
 

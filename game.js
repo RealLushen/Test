@@ -663,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // UI Functions
   function updateUI() {
-    // Update player stats
+    // Update top header stats
     playerNicknameElem.textContent = gameState.player.nickname;
     playerClassElem.textContent = gameState.player.className;
     playerHpValueElem.textContent = gameState.player.currentHP;
@@ -675,19 +675,35 @@ document.addEventListener('DOMContentLoaded', () => {
     playerXpElem.textContent = gameState.player.xp;
     xpNeededElem.textContent = gameState.player.xpNeeded;
     
-    // Update HP and Mana bars
+    // Update HP and Mana bars in top UI
     playerHpBarElem.style.width = `${(gameState.player.currentHP / gameState.player.maxHP) * 100}%`;
     playerManaBarElem.style.width = `${(gameState.player.currentMana / gameState.player.maxMana) * 100}%`;
     xpBarElem.style.width = `${(gameState.player.xp / gameState.player.xpNeeded) * 100}%`;
     
-    // Update enemy stats
+    // Update enemy stats in top UI
     enemyNameElem.textContent = gameState.enemy.name;
     enemyLevelElem.textContent = `Level ${gameState.enemy.level}`;
     enemyHpValueElem.textContent = gameState.enemy.currentHP;
     enemyHpMaxElem.textContent = gameState.enemy.maxHP;
-    
-    // Update enemy HP bar
     enemyHpBarElem.style.width = `${(gameState.enemy.currentHP / gameState.enemy.maxHP) * 100}%`;
+    
+    // Update battle UI stats
+    // Player stats below avatar
+    document.getElementById('battle-player-name').textContent = gameState.player.nickname;
+    document.getElementById('battle-player-hp').textContent = gameState.player.currentHP;
+    document.getElementById('battle-player-max-hp').textContent = gameState.player.maxHP;
+    document.getElementById('battle-player-mana').textContent = gameState.player.currentMana;
+    document.getElementById('battle-player-max-mana').textContent = gameState.player.maxMana;
+    document.getElementById('battle-player-hp-bar').style.width = `${(gameState.player.currentHP / gameState.player.maxHP) * 100}%`;
+    document.getElementById('battle-player-mana-bar').style.width = `${(gameState.player.currentMana / gameState.player.maxMana) * 100}%`;
+    
+    // Enemy stats below avatar
+    document.getElementById('battle-enemy-name').textContent = gameState.enemy.name;
+    document.getElementById('battle-enemy-hp').textContent = gameState.enemy.currentHP;
+    document.getElementById('battle-enemy-max-hp').textContent = gameState.enemy.maxHP;
+    document.getElementById('battle-enemy-hp-bar').style.width = `${(gameState.enemy.currentHP / gameState.enemy.maxHP) * 100}%`;
+    document.getElementById('enemy-min-damage').textContent = gameState.enemy.baseDamage[0];
+    document.getElementById('enemy-max-damage').textContent = gameState.enemy.baseDamage[1];
     
     // Update effects
     renderPlayerEffects();
