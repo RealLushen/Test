@@ -180,14 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
         this.xp -= this.xpNeeded;
         this.xpNeeded = getXPForNextLevel(this.level);
         
-        // Scale stats with level
-        const hpIncrease = Math.floor(this.maxHP * 0.1);
-        const manaIncrease = Math.floor(this.maxMana * 0.1);
-        
-        this.maxHP += hpIncrease;
-        this.currentHP += hpIncrease;
-        this.maxMana += manaIncrease;
-        this.currentMana += manaIncrease;
+        // No automatic stat increases with level anymore
+        // The only way to increase stats is through mutations or cards
         
         // Adjust hand size based on level
         if (this.level === 6) {
@@ -199,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         logBattle(`${this.nickname} reached level ${this.level}!`);
-        logBattle(`HP +${hpIncrease}, Mana +${manaIncrease}`);
         
         if ([6, 16, 26].includes(this.level)) {
           logBattle(`Hand size increased to ${this.handSize} cards!`);
@@ -233,17 +226,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Spawn a new enemy based on player level
   function spawnEnemy() {
     const enemyTemplate = getRandomEnemy(gameState.player.level);
-    const levelVariation = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
-    const enemyLevel = Math.max(1, gameState.player.level + levelVariation);
-    const levelScaling = 1 + ((enemyLevel - 1) * 0.1); // 10% increase per level
+    const enemyLevel = gameState.player.level;
     
     gameState.enemy = {
       name: enemyTemplate.name,
       level: enemyLevel,
-      maxHP: Math.floor(enemyTemplate.hp * levelScaling),
-      currentHP: Math.floor(enemyTemplate.hp * levelScaling),
+      maxHP: enemyTemplate.hp,
+      currentHP: enemyTemplate.hp,
       baseDamage: enemyTemplate.damage,
-      xpReward: Math.floor(enemyTemplate.xpReward * levelScaling),
+      xpReward: enemyTemplate.xpReward,
       icon: enemyTemplate.icon,
       actions: enemyTemplate.actions,
       effects: [],
