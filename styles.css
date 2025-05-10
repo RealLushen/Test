@@ -724,6 +724,11 @@ body {
         flex-wrap: wrap;
         height: auto;
         padding: 15px;
+        min-height: 250px; /* Ensure minimum height even on mobile */
+    }
+    
+    .vs-indicator {
+        font-size: 48px; /* Slightly smaller on mobile but still prominent */
     }
     
     .player-side, .enemy-side {
