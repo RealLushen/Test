@@ -1,3 +1,31 @@
+// Global variable for selected class
+let selectedClass = null;
+
+// Handle class selection (called from inline onclick in HTML)
+function handleClassSelection(card, classType) {
+  // Remove selected class from all cards
+  const allCards = document.querySelectorAll('.class-card');
+  allCards.forEach(c => c.classList.remove('selected'));
+  
+  // Add selected class to clicked card
+  card.classList.add('selected');
+  
+  // Update selected class
+  selectedClass = classType;
+  
+  // Validate inputs
+  const nicknameInput = document.getElementById('nickname');
+  const startGameButton = document.getElementById('start-game');
+  const nickname = nicknameInput.value.trim();
+  
+  // Enable start button if both nickname and class are selected
+  if (nickname && nickname.length >= 3 && selectedClass) {
+    startGameButton.disabled = false;
+  }
+  
+  console.log("Selected class:", selectedClass); // Debug info
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
   const nicknameInput = document.getElementById('nickname');
@@ -5,9 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const classCards = document.querySelectorAll('.class-card');
   const startGameButton = document.getElementById('start-game');
   const leaderboardBody = document.getElementById('leaderboard-body');
-  
-  // State variables
-  let selectedClass = null;
   
   // Load leaderboard
   function loadLeaderboard() {
@@ -39,23 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Event Listeners
   nicknameInput.addEventListener('input', validateInputs);
-  
-  classCards.forEach(card => {
-    card.addEventListener('click', () => {
-      // Remove selected class from all cards
-      classCards.forEach(c => c.classList.remove('selected'));
-      
-      // Add selected class to clicked card
-      card.classList.add('selected');
-      
-      // Update selected class
-      selectedClass = card.getAttribute('data-class');
-      
-      // Validate inputs
-      validateInputs();
-    });
-  });
-  
   startGameButton.addEventListener('click', startGame);
   
   // Functions
@@ -77,13 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
     nicknameError.textContent = '';
     
     // Enable start button if both nickname and class are selected
+    console.log("Validating inputs - Nickname:", nickname, "Selected class:", selectedClass);
     startGameButton.disabled = !(nickname && selectedClass);
   }
   
   function startGame() {
     const nickname = nicknameInput.value.trim();
     
+    console.log("Starting game with nickname:", nickname, "and class:", selectedClass);
+    
     if (!nickname || !selectedClass) {
+      alert("Please enter a nickname and select a class before starting.");
       return;
     }
     
