@@ -10,16 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     handCards: []
   };
 
-  // DOM Elements
+  // DOM Elements - Remove elements that no longer exist in the HTML
   const playerNicknameElem = document.getElementById('player-nickname');
   const playerClassElem = document.getElementById('player-class');
-  const playerHpValueElem = document.getElementById('player-hp-value');
-  const playerHpMaxElem = document.getElementById('player-hp-max');
-  const playerHpBarElem = document.getElementById('player-hp-bar');
-  const playerManaValueElem = document.getElementById('player-mana-value');
-  const playerManaMaxElem = document.getElementById('player-mana-max');
-  const playerManaBarElem = document.getElementById('player-mana-bar');
-  const playerSpeedElem = document.getElementById('player-speed');
   const playerLevelElem = document.getElementById('player-level');
   const playerXpElem = document.getElementById('player-xp');
   const xpNeededElem = document.getElementById('xp-needed');
@@ -27,9 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const roundsSurvivedElem = document.getElementById('rounds-survived');
   const enemyNameElem = document.getElementById('enemy-name');
   const enemyLevelElem = document.getElementById('enemy-level');
-  const enemyHpValueElem = document.getElementById('enemy-hp-value');
-  const enemyHpMaxElem = document.getElementById('enemy-hp-max');
-  const enemyHpBarElem = document.getElementById('enemy-hp-bar');
   const playerAvatarElem = document.getElementById('player-avatar');
   const enemyAvatarElem = document.getElementById('enemy-avatar');
   const playerEffectsElem = document.getElementById('player-effects');
@@ -663,29 +653,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // UI Functions
   function updateUI() {
-    // Update top header stats
+    // Update top header stats - only game progress remains
     playerNicknameElem.textContent = gameState.player.nickname;
     playerClassElem.textContent = gameState.player.className;
-    playerHpValueElem.textContent = gameState.player.currentHP;
-    playerHpMaxElem.textContent = gameState.player.maxHP;
-    playerManaValueElem.textContent = gameState.player.currentMana;
-    playerManaMaxElem.textContent = gameState.player.maxMana;
-    playerSpeedElem.textContent = gameState.player.speed;
     playerLevelElem.textContent = gameState.player.level;
     playerXpElem.textContent = gameState.player.xp;
     xpNeededElem.textContent = gameState.player.xpNeeded;
-    
-    // Update HP and Mana bars in top UI
-    playerHpBarElem.style.width = `${(gameState.player.currentHP / gameState.player.maxHP) * 100}%`;
-    playerManaBarElem.style.width = `${(gameState.player.currentMana / gameState.player.maxMana) * 100}%`;
     xpBarElem.style.width = `${(gameState.player.xp / gameState.player.xpNeeded) * 100}%`;
     
-    // Update enemy stats in top UI
+    // Update enemy name and level in top UI
     enemyNameElem.textContent = gameState.enemy.name;
     enemyLevelElem.textContent = `Level ${gameState.enemy.level}`;
-    enemyHpValueElem.textContent = gameState.enemy.currentHP;
-    enemyHpMaxElem.textContent = gameState.enemy.maxHP;
-    enemyHpBarElem.style.width = `${(gameState.enemy.currentHP / gameState.enemy.maxHP) * 100}%`;
     
     // Update battle UI stats
     // Player stats below avatar
@@ -694,6 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('battle-player-max-hp').textContent = gameState.player.maxHP;
     document.getElementById('battle-player-mana').textContent = gameState.player.currentMana;
     document.getElementById('battle-player-max-mana').textContent = gameState.player.maxMana;
+    document.getElementById('battle-player-speed').textContent = gameState.player.speed;
     document.getElementById('battle-player-hp-bar').style.width = `${(gameState.player.currentHP / gameState.player.maxHP) * 100}%`;
     document.getElementById('battle-player-mana-bar').style.width = `${(gameState.player.currentMana / gameState.player.maxMana) * 100}%`;
     

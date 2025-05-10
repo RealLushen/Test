@@ -8,35 +8,11 @@
 </head>
 <body>
     <div class="game-container">
-        <!-- Top UI Stats -->
+        <!-- Top UI Stats - Simplified to only show progress stats -->
         <div class="top-ui">
-            <div class="player-stats">
-                <div class="player-identity">
-                    <span id="player-nickname"></span>
-                    <span id="player-class"></span>
-                </div>
-                <div class="stat-group">
-                    <div class="stat">
-                        <span class="stat-label">HP:</span>
-                        <span id="player-hp-value">100</span>/<span id="player-hp-max">100</span>
-                    </div>
-                    <div class="hp-bar-container">
-                        <div id="player-hp-bar" class="hp-bar"></div>
-                    </div>
-                </div>
-                <div class="stat-group">
-                    <div class="stat">
-                        <span class="stat-label">Mana:</span>
-                        <span id="player-mana-value">30</span>/<span id="player-mana-max">30</span>
-                    </div>
-                    <div class="mana-bar-container">
-                        <div id="player-mana-bar" class="mana-bar"></div>
-                    </div>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Speed:</span>
-                    <span id="player-speed">5</span>
-                </div>
+            <div class="player-identity">
+                <span id="player-nickname"></span>
+                <span id="player-class"></span>
             </div>
             <div class="game-progress">
                 <div class="progress-stat">Round: <span id="rounds-survived">1</span></div>
@@ -46,29 +22,18 @@
                     <div id="xp-bar" class="xp-bar"></div>
                 </div>
             </div>
-            <div class="enemy-stats">
-                <div class="enemy-identity">
-                    <span id="enemy-name">Enemy</span>
-                    <span id="enemy-level">Level 1</span>
-                </div>
-                <div class="stat-group">
-                    <div class="stat">
-                        <span class="stat-label">HP:</span>
-                        <span id="enemy-hp-value">100</span>/<span id="enemy-hp-max">100</span>
-                    </div>
-                    <div class="hp-bar-container">
-                        <div id="enemy-hp-bar" class="hp-bar"></div>
-                    </div>
-                </div>
+            <div class="enemy-identity">
+                <span id="enemy-name">Enemy</span>
+                <span id="enemy-level">Level 1</span>
             </div>
         </div>
 
-        <!-- Battle Arena - Revised with stats under avatars -->
+        <!-- Battle Arena - Without crossed swords -->
         <div class="battle-arena">
             <div class="player-side">
                 <div id="player-avatar" class="avatar"></div>
                 <div id="player-effects" class="effects-container"></div>
-                <!-- Player stats moved below avatar -->
+                <!-- Player stats below avatar -->
                 <div class="character-stats player-stats-battle">
                     <div class="stats-name" id="battle-player-name">Player</div>
                     <div class="stat-group">
@@ -85,13 +50,16 @@
                             <div id="battle-player-mana-bar" class="mana-bar"></div>
                         </div>
                     </div>
+                    <div class="stat-group">
+                        <div class="stat-label">Speed:</div>
+                        <div class="stat-values"><span id="battle-player-speed">5</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="vs-indicator">⚔️</div>
             <div class="enemy-side">
                 <div id="enemy-avatar" class="avatar"></div>
                 <div id="enemy-effects" class="effects-container"></div>
-                <!-- Enemy stats moved below avatar -->
+                <!-- Enemy stats below avatar -->
                 <div class="character-stats enemy-stats-battle">
                     <div class="stats-name" id="battle-enemy-name">Enemy</div>
                     <div class="stat-group">
