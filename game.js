@@ -1,4 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Dedicated function to update rounds counter
+  function updateRoundsCounter() {
+    const roundsElement = document.getElementById('rounds-survived');
+    if (roundsElement) {
+      roundsElement.textContent = gameState.enemiesDefeated.toString();
+      console.log("Updated rounds counter to:", gameState.enemiesDefeated);
+    } else {
+      console.error("Rounds counter element not found!");
+    }
+  }document.addEventListener('DOMContentLoaded', () => {
   // Game State
   const gameState = {
     player: null,
@@ -332,6 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Combat actions
   function useAbility(abilityId) {
+    // Force rounds counter update
+    updateRoundsCounter();
+    
     const ability = ABILITIES[abilityId];
     
     // Check if player has enough mana
@@ -535,8 +547,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Increment enemies defeated counter and update UI
     gameState.enemiesDefeated++;
     
-    // Explicitly set the text content of the rounds counter
-    document.getElementById('rounds-survived').textContent = gameState.enemiesDefeated;
+    // Update the counter using our dedicated function
+    updateRoundsCounter();
     
     // Reset turn counter for new battle
     gameState.turn = 1;
