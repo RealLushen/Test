@@ -80,18 +80,32 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Body styles */
 body {
     background-color: var(--dark-bg);
     color: var(--text-light);
     min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main menu page specific body style */
+body.main-menu-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Game page specific body style */
+body.game-body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start; /* Left align containers */
-    padding: 20px;
+    align-items: center;
 }
 
-/* Container wrapper to help with positioning */
+/* Container wrapper for positioning game elements */
 .container-wrapper {
     width: 100%;
     max-width: 1400px;
@@ -99,6 +113,21 @@ body {
     flex-direction: column;
     align-items: flex-start;
     margin: 0 auto;
+}
+
+/* Main menu container specific styles */
+.main-container {
+    background-color: var(--medium-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 0 auto; /* Explicitly center the main container */
 }
 
 /* Main Menu Styles */
