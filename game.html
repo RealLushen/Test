@@ -8,13 +8,15 @@
 </head>
 <body>
     <div class="game-container">
-        <!-- Top UI Stats - Only rounds, level, and XP -->
+        <!-- Top UI Stats - Horizontal layout -->
         <div class="top-ui">
             <div class="spacer"></div>
             <div class="game-progress">
-                <div class="progress-stat">Round: <span id="rounds-survived">1</span></div>
-                <div class="progress-stat">Level: <span id="player-level">1</span></div>
-                <div class="progress-stat">XP: <span id="player-xp">0</span>/<span id="xp-needed">100</span></div>
+                <div class="progress-stats-row">
+                    <div class="progress-stat">Round: <span id="rounds-survived">1</span></div>
+                    <div class="progress-stat">Level: <span id="player-level">1</span></div>
+                    <div class="progress-stat">XP: <span id="player-xp">0</span>/<span id="xp-needed">100</span></div>
+                </div>
                 <div class="xp-bar-container">
                     <div id="xp-bar" class="xp-bar"></div>
                 </div>
