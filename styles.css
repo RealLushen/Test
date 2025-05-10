@@ -718,18 +718,25 @@ body {
         width: 100%;
     }
     
-    .battle-arena {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+    /* Updated responsive styles for battle arena */
+    .battle-characters {
+        flex-direction: column;
+        gap: 20px;
     }
     
     .player-side, .enemy-side {
-        border: none;
+        width: 100%;
         padding: 10px;
     }
     
-    .player-side {
-        border-bottom: 1px solid var(--medium-bg);
+    .arena-center {
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .battle-arena {
+        height: auto;
+        padding: 10px;
     }
     
     .action-buttons {

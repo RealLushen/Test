@@ -63,19 +63,24 @@
             </div>
         </div>
 
-        <!-- Battle Arena -->
+        <!-- Battle Arena - Completely revised for player vs enemy layout -->
         <div class="battle-arena">
-            <div class="player-side">
-                <div id="player-avatar" class="avatar"></div>
-                <div id="player-effects" class="effects-container"></div>
-            </div>
-            <div class="enemy-side">
-                <div id="enemy-avatar" class="avatar"></div>
-                <div id="enemy-effects" class="effects-container"></div>
+            <div class="battle-characters">
+                <div class="player-side">
+                    <div id="player-avatar" class="avatar"></div>
+                    <div id="player-effects" class="effects-container"></div>
+                </div>
+                <div class="arena-center">
+                    <div class="vs-indicator">VS</div>
+                </div>
+                <div class="enemy-side">
+                    <div id="enemy-avatar" class="avatar"></div>
+                    <div id="enemy-effects" class="effects-container"></div>
+                </div>
             </div>
         </div>
 
-        <!-- Battle Log (moved below the arena) -->
+        <!-- Battle Log - Separate section below the arena -->
         <div class="battle-log-container">
             <h3>Combat Log</h3>
             <div id="battle-log" class="battle-log"></div>
