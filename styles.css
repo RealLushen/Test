@@ -765,20 +765,18 @@ body {
     
     /* Battle arena mobile adjustments */
     .battle-arena {
-        flex-direction: row; /* Explicitly keep this horizontal */
-        flex-wrap: wrap;
+        grid-template-columns: 1fr; /* Switch to vertical layout on mobile */
+        grid-template-rows: auto 3px auto; /* Create a dedicated row for horizontal divider */
         height: auto;
-        padding: 20px 10px;
-        min-height: 350px; /* Increased to accommodate the new stat displays */
+        padding: 15px;
+        min-height: 400px; /* Increased for vertical layout */
+        gap: 20px; /* Gap between rows */
     }
     
-    .vs-indicator {
-        font-size: 48px; /* Slightly smaller on mobile but still prominent */
-    }
-    
-    .player-side, .enemy-side {
-        width: 48%;
-        padding: 5px;
+    .battle-arena-divider {
+        width: 80%; /* Horizontal divider on mobile */
+        height: 3px;
+        margin: 0 auto;
     }
     
     .avatar {
@@ -790,6 +788,7 @@ body {
     .character-stats {
         padding: 8px;
         font-size: 0.8rem;
+        width: 90%;
     }
     
     .stats-name {
