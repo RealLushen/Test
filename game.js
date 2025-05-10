@@ -702,7 +702,48 @@ document.addEventListener('DOMContentLoaded', () => {
       const effectElem = document.createElement('div');
       effectElem.className = 'effect-icon';
       effectElem.textContent = effect.icon;
-      effectElem.title = `${effect.name} (${effect.duration} rounds)`;
+      
+      // Add tooltip with detailed effect information
+      const tooltip = document.createElement('div');
+      tooltip.className = 'effect-tooltip';
+      
+      const tooltipName = document.createElement('div');
+      tooltipName.className = 'tooltip-name';
+      tooltipName.textContent = effect.name;
+      tooltip.appendChild(tooltipName);
+      
+      const tooltipDuration = document.createElement('div');
+      tooltipDuration.className = 'tooltip-duration';
+      tooltipDuration.textContent = `${effect.duration} round${effect.duration !== 1 ? 's' : ''} remaining`;
+      tooltip.appendChild(tooltipDuration);
+      
+      const tooltipDescription = document.createElement('div');
+      tooltipDescription.className = 'tooltip-description';
+      
+      // Generate description based on effect type
+      switch(effect.effect) {
+        case 'damageBonus':
+          tooltipDescription.textContent = `Increases damage by ${effect.value * 100}%`;
+          break;
+        case 'damageReduction':
+          tooltipDescription.textContent = `Reduces incoming damage by ${effect.value * 100}%`;
+          break;
+        case 'speedReduction':
+          tooltipDescription.textContent = `Reduces speed by ${effect.value}`;
+          break;
+        case 'stunned':
+          tooltipDescription.textContent = 'Cannot perform any actions';
+          break;
+        case 'damageOverTime':
+          tooltipDescription.textContent = `Takes ${effect.value} damage at the end of each turn`;
+          break;
+        default:
+          tooltipDescription.textContent = effect.name;
+      }
+      
+      tooltip.appendChild(tooltipDescription);
+      effectElem.appendChild(tooltip);
+      
       playerEffectsElem.appendChild(effectElem);
     });
   }
@@ -714,7 +755,48 @@ document.addEventListener('DOMContentLoaded', () => {
       const effectElem = document.createElement('div');
       effectElem.className = 'effect-icon';
       effectElem.textContent = effect.icon;
-      effectElem.title = `${effect.name} (${effect.duration} rounds)`;
+      
+      // Add tooltip with detailed effect information
+      const tooltip = document.createElement('div');
+      tooltip.className = 'effect-tooltip';
+      
+      const tooltipName = document.createElement('div');
+      tooltipName.className = 'tooltip-name';
+      tooltipName.textContent = effect.name;
+      tooltip.appendChild(tooltipName);
+      
+      const tooltipDuration = document.createElement('div');
+      tooltipDuration.className = 'tooltip-duration';
+      tooltipDuration.textContent = `${effect.duration} round${effect.duration !== 1 ? 's' : ''} remaining`;
+      tooltip.appendChild(tooltipDuration);
+      
+      const tooltipDescription = document.createElement('div');
+      tooltipDescription.className = 'tooltip-description';
+      
+      // Generate description based on effect type
+      switch(effect.effect) {
+        case 'damageBonus':
+          tooltipDescription.textContent = `Increases damage by ${effect.value * 100}%`;
+          break;
+        case 'damageReduction':
+          tooltipDescription.textContent = `Reduces incoming damage by ${effect.value * 100}%`;
+          break;
+        case 'speedReduction':
+          tooltipDescription.textContent = `Reduces speed by ${effect.value}`;
+          break;
+        case 'stunned':
+          tooltipDescription.textContent = 'Cannot perform any actions';
+          break;
+        case 'damageOverTime':
+          tooltipDescription.textContent = `Takes ${effect.value} damage at the end of each turn`;
+          break;
+        default:
+          tooltipDescription.textContent = effect.name;
+      }
+      
+      tooltip.appendChild(tooltipDescription);
+      effectElem.appendChild(tooltip);
+      
       enemyEffectsElem.appendChild(effectElem);
     });
   }
