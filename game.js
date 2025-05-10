@@ -1,31 +1,27 @@
-// Dedicated function to update rounds counter
-  function updateRoundsCounter() {
-    const roundsElement = document.getElementById('rounds-survived');
-    if (roundsElement) {
-      roundsElement.textContent = gameState.enemiesDefeated.toString();
-      console.log("Updated rounds counter to:", gameState.enemiesDefeated);
-    } else {
-      console.error("Rounds counter element not found!");
-    }
-  }document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("Game.js loaded - initializing game...");
+  
   // Game State
   const gameState = {
     player: null,
     enemy: null,
-    enemiesDefeated: 0, // Count of defeated enemies for Round counter
+    round: 1,
     isPlayerTurn: true,
     battleLog: [],
     activeMutations: [],
-    handCards: [],
-    turn: 1 // Turn counter within a battle
+    handCards: []
   };
 
-  // DOM Elements - Make sure we have the rounds counter
+  // DOM Elements
+  const playerNicknameElem = document.getElementById('battle-player-name');
+  const playerClassElem = document.getElementById('player-class');
   const playerLevelElem = document.getElementById('player-level');
   const playerXpElem = document.getElementById('player-xp');
   const xpNeededElem = document.getElementById('xp-needed');
   const xpBarElem = document.getElementById('xp-bar');
   const roundsSurvivedElem = document.getElementById('rounds-survived');
+  const enemyNameElem = document.getElementById('battle-enemy-name');
+  const enemyLevelElem = document.getElementById('battle-enemy-level');
   const playerAvatarElem = document.getElementById('player-avatar');
   const enemyAvatarElem = document.getElementById('enemy-avatar');
   const playerEffectsElem = document.getElementById('player-effects');
@@ -49,7 +45,9 @@
   // Initialize the game
   function initGame() {
     // Load player data from localStorage
-    const playerData = JSON.parse(localStorage.getItem('arkaniumPlayer'));
+    const playerDataString = localStorage.getItem('arkaniumPlayer');
+    
+    const playerData = JSON.parse(playerDataString);
     
     if (!playerData || !playerData.nickname || !playerData.class) {
       // Redirect to main menu if no player data
@@ -232,11 +230,10 @@
   // Spawn a new enemy based on player level
   function spawnEnemy() {
     const enemyTemplate = getRandomEnemy(gameState.player.level);
-    const enemyLevel = gameState.player.level;
     
     gameState.enemy = {
       name: enemyTemplate.name,
-      level: enemyLevel,
+      level: gameState.player.level,
       maxHP: enemyTemplate.hp,
       currentHP: enemyTemplate.hp,
       baseDamage: enemyTemplate.damage,
@@ -341,9 +338,6 @@
   
   // Combat actions
   function useAbility(abilityId) {
-    // Force rounds counter update
-    updateRoundsCounter();
-    
     const ability = ABILITIES[abilityId];
     
     // Check if player has enough mana
@@ -456,9 +450,6 @@
       
       // Check if player is still alive
       if (gameState.player.currentHP > 0) {
-        // Increment turn counter after both player and enemy have acted
-        gameState.turn++;
-        
         // Start new player turn
         startPlayerTurn();
       }
@@ -544,14 +535,8 @@
   }
   
   function roundWon() {
-    // Increment enemies defeated counter and update UI
-    gameState.enemiesDefeated++;
-    
-    // Update the counter using our dedicated function
-    updateRoundsCounter();
-    
-    // Reset turn counter for new battle
-    gameState.turn = 1;
+    // Update round counter
+    gameState.round++;
     
     // Award XP
     gameState.player.gainXP(gameState.enemy.xpReward);
@@ -611,9 +596,6 @@
     // Spawn new enemy
     spawnEnemy();
     
-    // Reset turn counter for new battle
-    gameState.turn = 1;
-    
     // Start player turn
     startPlayerTurn();
   }
@@ -627,7 +609,7 @@
     // Set final stats
     finalNicknameElem.textContent = gameState.player.nickname;
     finalClassElem.textContent = gameState.player.className;
-    finalRoundsElem.textContent = gameState.enemiesDefeated;
+    finalRoundsElem.textContent = gameState.round;
     finalLevelElem.textContent = gameState.player.level;
     
     // Show mutation history
@@ -660,14 +642,19 @@
   
   // UI Functions
   function updateUI() {
-    // Update top header stats - only game progress remains
+    // Update player stats in battle UI
+    playerNicknameElem.textContent = gameState.player.nickname;
+    
+    // Update level, XP, etc. in top bar
     playerLevelElem.textContent = gameState.player.level;
     playerXpElem.textContent = gameState.player.xp;
     xpNeededElem.textContent = gameState.player.xpNeeded;
     xpBarElem.style.width = `${(gameState.player.xp / gameState.player.xpNeeded) * 100}%`;
+    
+    // Update round counter
     roundsSurvivedElem.textContent = gameState.round;
     
-    // Update battle UI stats
+// Update battle UI stats
     // Player stats below avatar
     document.getElementById('battle-player-name').textContent = gameState.player.nickname;
     document.getElementById('battle-player-hp').textContent = gameState.player.currentHP;
