@@ -85,7 +85,8 @@ body {
     color: var(--text-light);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     padding: 20px;
 }
@@ -290,26 +291,24 @@ body {
     opacity: 0.7;
 }
 
-/* Game Screen Styles - Fix grid layout */
+/* Game Screen Styles - Updated grid layout without combat log */
 .game-container {
     display: grid;
     grid-template-columns: 4fr 1fr;
-    /* Adjust the first row to auto to fit the smaller top UI */
-    grid-template-rows: auto auto auto auto;
+    /* Removed battle-log from grid template areas */
+    grid-template-rows: auto auto auto;
     grid-template-areas:
         "top-ui top-ui"
         "battle-arena side-panel"
-        "battle-log side-panel"
         "player-actions side-panel";
-    gap: 15px; /* Reduced from 20px */
+    gap: 15px;
     width: 100%;
     max-width: 1400px;
-    height: 90vh;
     background-color: var(--medium-bg);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    padding: 15px; /* Reduced from 20px */
-    overflow: auto;
+    padding: 15px;
+    margin-bottom: 15px; /* Add space between game container and combat log */
 }
 
 .top-ui {
@@ -755,19 +754,21 @@ body {
 @media (max-width: 1200px) {
     .game-container {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
         grid-template-areas:
             "top-ui"
             "battle-arena"
-            "battle-log"
             "player-actions"
             "side-panel";
         height: auto;
-        min-height: 100vh;
     }
     
     .side-panel {
         max-height: 200px;
+    }
+    
+    .combat-log-container {
+        margin-top: 15px;
     }
 }
 
