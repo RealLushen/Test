@@ -11,16 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     turn: 1 // Turn counter within a battle
   };
 
-  // DOM Elements - Remove elements that no longer exist in the HTML
-  const playerNicknameElem = document.getElementById('player-nickname');
-  const playerClassElem = document.getElementById('player-class');
+  // DOM Elements - Make sure we have the rounds counter
   const playerLevelElem = document.getElementById('player-level');
   const playerXpElem = document.getElementById('player-xp');
   const xpNeededElem = document.getElementById('xp-needed');
   const xpBarElem = document.getElementById('xp-bar');
   const roundsSurvivedElem = document.getElementById('rounds-survived');
-  const enemyNameElem = document.getElementById('enemy-name');
-  const enemyLevelElem = document.getElementById('enemy-level');
   const playerAvatarElem = document.getElementById('player-avatar');
   const enemyAvatarElem = document.getElementById('enemy-avatar');
   const playerEffectsElem = document.getElementById('player-effects');
@@ -538,7 +534,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function roundWon() {
     // Increment enemies defeated counter and update UI
     gameState.enemiesDefeated++;
-    roundsSurvivedElem.textContent = gameState.enemiesDefeated;
+    
+    // Explicitly set the text content of the rounds counter
+    document.getElementById('rounds-survived').textContent = gameState.enemiesDefeated;
     
     // Reset turn counter for new battle
     gameState.turn = 1;
@@ -617,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set final stats
     finalNicknameElem.textContent = gameState.player.nickname;
     finalClassElem.textContent = gameState.player.className;
-    finalRoundsElem.textContent = gameState.round;
+    finalRoundsElem.textContent = gameState.enemiesDefeated;
     finalLevelElem.textContent = gameState.player.level;
     
     // Show mutation history
