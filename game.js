@@ -3,12 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameState = {
     player: null,
     enemy: null,
-    round: 1, // This now represents defeated enemies + 1 (current enemy)
+    enemiesDefeated: 0, // Track enemies defeated separately
+    round: 1, // Current round (enemy number)
     isPlayerTurn: true,
     battleLog: [],
     activeMutations: [],
     handCards: [],
-    turn: 1 // Add a new counter for tracking turns within a round
+    turn: 1 // Counter for turns within a round
   };
 
   // DOM Elements - Remove elements that no longer exist in the HTML
@@ -538,9 +539,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function roundWon() {
-    // Update round counter - a round is one defeated enemy
+    // Increment enemies defeated counter
+    gameState.enemiesDefeated++;
+    // Update the UI to show enemies defeated
+    roundsSurvivedElem.textContent = gameState.enemiesDefeated;
+    
+    // Increment round for the next enemy
     gameState.round++;
-    roundsSurvivedElem.textContent = gameState.round;
     
     // Reset turn counter for new round
     gameState.turn = 1;
@@ -550,6 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     logBattle(`You defeated the ${gameState.enemy.name}!`);
     logBattle(`Gained ${gameState.enemy.xpReward} XP!`);
+    logBattle(`Total enemies defeated: ${gameState.enemiesDefeated}`);
     logBattle(`=== Round ${gameState.round} ===`);
     
     // Show mutation selection
