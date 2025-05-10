@@ -236,7 +236,7 @@ body {
     opacity: 0.7;
 }
 
-/* Game Screen Styles */
+/* Game Screen Styles - Fix grid layout */
 .game-container {
     display: grid;
     grid-template-columns: 4fr 1fr;
@@ -254,7 +254,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     padding: 20px;
-    overflow: hidden;
+    overflow: auto; /* Changed from overflow: hidden to ensure all content is accessible */
 }
 
 .top-ui {
@@ -691,10 +691,10 @@ body {
         grid-template-rows: auto auto auto auto auto;
         grid-template-areas:
             "top-ui"
-            "side-panel"
             "battle-arena"
             "battle-log"
-            "player-actions";
+            "player-actions"
+            "side-panel";
         height: auto;
         min-height: 100vh;
     }
@@ -718,29 +718,28 @@ body {
         width: 100%;
     }
     
-    /* Updated responsive styles for battle arena */
-    .battle-characters {
-        flex-direction: column;
-        gap: 20px;
+    /* Keep battle arena as flex but make it responsive */
+    .battle-arena {
+        flex-direction: row; /* Explicitly keep this horizontal */
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px;
     }
     
     .player-side, .enemy-side {
-        width: 100%;
-        padding: 10px;
-    }
-    
-    .arena-center {
-        width: 100%;
-        padding: 10px 0;
-    }
-    
-    .battle-arena {
-        height: auto;
         padding: 10px;
     }
     
     .action-buttons {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row; /* Keep buttons side by side even on mobile */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .action-button {
+        margin: 5px;
+        min-width: 120px;
     }
     
     .card {
